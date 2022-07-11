@@ -1,0 +1,29 @@
+#include<iostream>
+#include<string>
+using namespace std;
+#define day 7
+int main()
+{
+	//1整型
+	int a =0;
+	cout << "赋值：" << endl;
+	cin >> a;
+	cout << "a=" << a << endl;
+	//2.浮点型
+	float f = 3.14f;
+	cout << "浮点变量：" << endl;
+	cin >> f;
+	cout << "变量f=" << f << endl;
+	//3.字符型
+	char ch = 'a';
+	cout << "给ch赋值" << endl;
+	cin >> ch;
+	cout << "字符ch=" << ch << endl;
+	//4.字符串
+	string str = "woshisuaige";
+	cout << "字符串：" << str << endl;
+	//5.布尔
+	bool s = false;
+	cout << "bool ：" << s << endl;
+	return 0;
+}
