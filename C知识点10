@@ -1,0 +1,306 @@
+#include<iostream>
+#include<string>
+using namespace std;
+//1.创建学生数据类型：学生包括：姓名，年龄，分数
+struct student
+{
+	//成员列表
+
+	//姓名
+	string name;
+	//年龄
+	int age;
+	//分数
+	int score;
+
+};
+
+int main()
+{
+	//2.通过学生类型创建具体学生//struct可以省略
+//2.1 struct student s1
+	struct student s1;
+	//给s1属性赋值
+	s1.name = "hanmeimei";
+	s1.age = 18;
+	s1.score = 100;
+	
+
+//2.2 struct student s1={.....}
+	struct student s2 = { "zhangsan ",19,98 };
+	cout << "姓名：" << s2.name << "年龄：" << s2.age << "分数：" << s2.score << endl;
+
+//2,3在定义结构体时创建结构体变量
+
+	system("pause");
+	return 0;
+}
+二
+#include<iostream>
+#include<string>
+using namespace std;
+//结构体数组
+//1.定义结构体
+struct student
+{
+	//姓名
+	string name;
+	//年龄
+	int age;
+	//分数
+	int score;
+};
+
+int main()
+{
+	//2.创建结构体数组
+	struct student renyuan[3] =
+	{
+		{"zhangshan",18,100},{"lishi",19,89},{"wangwu",20,50}
+	};
+//3.给结构体数组中的元素赋值
+	renyuan[2].name = "zhaoliu";
+	renyuan[2].age = 19;
+	renyuan[2].score = 100;
+
+//4.遍历结构体数组
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "姓名：" << renyuan[i].name << "年龄：" << renyuan[i].age << "成绩：" << renyuan[i].score << endl;
+
+	}
+	return 0;
+}
+三
+#include<iostream>
+#include<string>
+//嵌套结构体
+using namespace std;
+
+struct student
+{
+	//姓名
+	string name;
+	//年龄
+	int age;
+	//分数
+	int score;
+};
+struct teacher
+{
+	int id;
+	string name;
+	int age;
+	struct student stu;
+};
+int main() 
+{
+	teacher t;
+	{
+		t.id = 1000000;
+		t.name = "lapwang";
+		t.age = 56;
+		t.stu.name = "xiaowang";
+		t.stu.age = 19;
+		t.stu.score = 66;
+	}
+	
+	return 0;
+}
+四
+#include<iostream>
+#include<string>
+//结构体做函数参数
+using namespace std;
+//创建结构体
+struct student
+{
+	//姓名
+	string name;
+	//年龄
+	int age;
+	//分数
+	int score;
+};
+//打印学生信息的函数
+void printfstudent(student ss)
+{
+	cout << "子函数中 姓名:" << ss.name << "年龄：" << ss.age << endl;
+}
+
+int main() 
+{
+	//结构体做函数参数
+
+	//将学生传入到一个参数中，打印学生身上所有信息
+
+	//创建结构体变量
+	struct student s1;
+	s1.name = "hanmeimei";
+	s1.age = 18;
+	s1.score = 100;
+	printfstudent(s1);
+	return 0;
+}
+
+
+
+
+#include<iostream>
+#include<string>
+//结构体做函数参数
+using namespace std;
+
+//1.设计英雄的结构体
+struct hero
+{
+	string name;
+	int age;
+	string sex;
+
+};//3.设计排序函数
+void paixu(struct hero hero1[], int len)
+{
+	for (int i = 0; i < len - 1; i++)
+	{
+		for (int j = 0; j < len - i - 1;j++)
+		{
+			if (hero1[j].age > hero1[j + 1].age)
+			{
+				struct hero temp = hero1[j];
+				hero1[j] = hero1[j + 1];
+				hero1[j + 1] = temp;
+			}
+		}
+	}
+
+}
+void printhero(struct hero hero1[], int len)
+{
+	for (int i = 0; i < len; i++)
+	{
+		cout << "姓名;" << hero1[i].name << "年龄：" << hero1[i].age << "性别：" << hero1->sex << endl;
+	}
+}
+
+int main()
+{
+	//2.创建数组存放五个英雄
+	struct hero hero1[5] =
+	{
+		{"刘备",23,"男" },
+		{"关羽",22,"男"},
+		{"张飞",20,"男"},
+		{"赵云",21,"男"},
+		{"貂蝉",19,"女"},
+	};
+	//4.打印结果
+	int len = 5;
+	printhero(hero1, len);
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include<iostream>
+#include<string>
+#define max 1000
+using namespace std;
+//添加联系人结构体
+struct person
+{
+	string name;//姓名
+	int sex;//1.男2.女
+	int age;//年龄
+	string phone;//电话
+	string addr;//地址
+
+};
+
+//设计通讯录结构体
+struct book
+{
+	//通讯录中保存的联系人数组
+	struct person person11[max];
+
+	//通讯录中当前记录联系人个数
+	int size;
+};
+//添加联系人函数
+void addperson(book*abs)
+{
+	//判断通讯录是否满
+	if (abs->size == max)
+	{
+		cout << "通讯录已满" << endl;
+		return;
+	}
+	else
+	{
+		string name;
+		cout << "请输入姓名：" << endl;
+		cin >> name;
+		abs->person11[abs->size].name=name;
+
+	}
+}
+//1.显示菜单界面
+
+void shoemenu()
+{
+	cout << "**********************" << endl;
+	cout << "*****1.添加联系人*****" << endl;
+	cout << "*****2.显示联系人*****" << endl;
+	cout << "*****3.删除联系人*****" << endl;
+	cout << "*****4.查找联系人*****" << endl;
+	cout << "*****5.修改联系人*****" << endl;
+	cout << "*****6.清空联系人*****" << endl;
+	cout << "*****0.退出通讯录*****" << endl;
+	cout << "**********************" << endl;
+	
+}
+int main()
+{
+	//创建通讯录结构体变量
+	book abs;
+	//初始化通讯录当前人员个数
+	abs.size = 0;
+	int select = 0;//用户的输入
+	shoemenu();
+	cin >> select;
+	switch (select)
+	{
+	case 1://添加联系人
+		break;
+		addperson(&abs);
+	case 2://显示联系人
+		break;
+	case 3://删除联系人
+		break;
+	case 4://查找联系人
+		break;
+	case 5://修改联系人
+		break;
+	case 6://清空联系人
+		break;
+	case 0://退出通讯录
+		cout << "欢迎下次使用" << endl;
+		system("pause");
+		return 0;
+		break; 
+	default:
+		break;
+	}
+
+	system("pause");
+}
